@@ -248,7 +248,10 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"container": "broze",
-										"folder": "cdc",
+										"folder": {
+											"value": "@{pipeline().parameters.table}_cdc",
+											"type": "Expression"
+										},
 										"file": "empty.json"
 									}
 								}
