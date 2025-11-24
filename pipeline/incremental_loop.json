@@ -329,7 +329,9 @@
 						"activity": "ForEach1",
 						"dependencyConditions": [
 							"Skipped",
-							"Failed"
+							"Failed",
+							"Succeeded",
+							"Completed"
 						]
 					}
 				],
@@ -340,7 +342,15 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-00.northcentralus.logic.azure.com:443/workflows/583e96f0b27846cda77d6ae1b82ffff4/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=eRJ5ZQzV7UCNbx25-1roStdgqkpn-Mb09kijzZxUFVQ",
+					"body": {
+						"value": "{\n    \"pipeline_name\" : \"@{pipeline().Pipeline}\",\n    \"pipeline_runId\" : \"@{pipeline().RunId}\"\n}",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
