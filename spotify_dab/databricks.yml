@@ -4,21 +4,6 @@ bundle:
   name: spotify_dab
   uuid: fc32000b-e485-47b1-b2ca-12cc8703d9be
 
-include:
-  - resources/*.yml
-  - resources/*/*.yml
-
-artifacts:
-  python_artifact:
-    type: whl
-    build: uv build --wheel
-
-# Variable declarations. These variables are assigned in the dev/prod targets below.
-variables:
-  catalog:
-    description: The catalog to use
-  schema:
-    description: The schema to use
 
 targets:
   dev:
@@ -29,19 +14,17 @@ targets:
     mode: development
     default: true
     workspace:
-      host: http://127.0.0.1:7073
-    variables:
-      catalog: databricksazureproject
-      schema: ${workspace.current_user.short_name}
+      host:  adb-4004560711716196.16.azuredatabricks.net
+    presets : 
+      source_linked_deployment : false
+    
   prod:
     mode: production
     workspace:
-      host: http://127.0.0.1:7073
+      host: adb-4004560711716196.16.azuredatabricks.net
       # We explicitly deploy to /Workspace/Users/nimittaswala1998_gmail.com#ext#@nimittaswala1998gmail.onmicrosoft.com to make sure we only have a single copy.
-      root_path: /Workspace/Users/nimittaswala1998_gmail.com#ext#@nimittaswala1998gmail.onmicrosoft.com/.bundle/${bundle.name}/${bundle.target}
-    variables:
-      catalog: databricksazureproject
-      schema: prod
+      root_path: /Workspace/PROD/.bundle/${bundle.name}/${bundle.target}
+  
     permissions:
       - user_name: nimittaswala1998_gmail.com#ext#@nimittaswala1998gmail.onmicrosoft.com
         level: CAN_MANAGE
