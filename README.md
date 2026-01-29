@@ -100,4 +100,3 @@ Managing data quality and historical tracking with DLT
 
 Structuring projects for CI/CD and maintainability
 
-# azureproject
